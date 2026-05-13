@@ -6,13 +6,9 @@
     <meta name="description" content="D2IP - Professional Domain to IP Converter.">
     <meta name="theme-color" content="#020617">
     <title>D2IP | Domain To IP Converter</title>
-    <!-- PWA Manifest (external file reference) -->
+    <!-- PWA Manifest & Service Worker (external files assumed present) -->
     <link rel="manifest" href="manifest.json">
-    <!-- sw.js -->
-    <link rel="sw.js" href="sw.js">
-    <!-- Apple touch icon -->
     <link rel="apple-touch-icon" href="icons/icon-192.png">
-    <!-- Dynamic Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="shortcut icon" href="images/favicon.ico">
     <!-- Font Awesome 6 -->
@@ -26,7 +22,7 @@
             box-sizing: border-box;
         }
 
-        /* Hide scrollbar completely */
+        /* Hide scrollbar */
         .main-content::-webkit-scrollbar {
             width: 0px;
             background: transparent;
@@ -379,7 +375,7 @@
             box-shadow: 0 8px 22px rgba(59, 130, 246, 0.4);
         }
 
-        /* Result Card - FULL WIDTH */
+        /* Result Card - FULL WIDTH and on mobile extra large */
         .result-card {
             background: var(--card-bg);
             backdrop-filter: blur(8px);
@@ -647,7 +643,7 @@
             font-size: 1.2rem;
         }
 
-        /* ========= MOBILE FIXES: spacing, full-width result, clear button ========= */
+        /* ========= MOBILE FIXES: full-width result, bigger output box ========= */
         @media (max-width: 768px) {
             .sidebar {
                 display: none;
@@ -675,7 +671,6 @@
                 margin-bottom: 2rem;
                 width: 100%;
             }
-            /* Extra gap between header and converter on mobile */
             .hero-section {
                 width: 100%;
                 margin: 1rem 0 2rem 0;
@@ -693,16 +688,17 @@
                 max-width: 100%;
                 margin: 0 0 1.5rem 0;
             }
-            /* FULL WIDTH RESULT CARD - Screen fit */
+            /* RESULT CARD - Bigger, wider, more spacious on mobile */
             .result-card {
                 width: 100%;
                 margin: 0;
-                padding: 1.8rem 1rem;
-                border-radius: 28px;
+                padding: 2rem 1.5rem;
+                border-radius: 32px;
                 box-sizing: border-box;
+                min-height: auto;
             }
             .info-row-center {
-                gap: 1.2rem;
+                gap: 1.8rem;
                 width: 100%;
             }
             .info-block-center {
@@ -710,28 +706,28 @@
                 align-items: center;
             }
             .info-label-sm {
-                font-size: 0.7rem;
-                letter-spacing: 1.2px;
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
             }
             .info-value-lg {
-                font-size: 1rem;
-                padding: 0.5rem 0.9rem;
+                font-size: 1.2rem;
+                padding: 0.7rem 1rem;
                 max-width: 100%;
                 word-break: break-word;
             }
-            /* Larger IP display on mobile */
+            /* LARGER IP DISPLAY to match "bada kar de" requirement */
             .ip-highlight {
-                font-size: 1.5rem;
-                padding: 0.7rem 1.2rem;
+                font-size: 1.8rem;
+                padding: 1rem 1.5rem;
                 word-break: break-all;
                 display: inline-block;
                 max-width: 100%;
             }
             .copy-ip-button {
-                padding: 0.7rem 1.6rem;
-                font-size: 0.85rem;
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
                 width: auto;
-                margin-top: 0.5rem;
+                margin-top: 0.8rem;
             }
             #homePanel, #historyPanel {
                 width: 100%;
@@ -769,19 +765,19 @@
 
         @media (max-width: 480px) {
             .result-card {
-                padding: 1.5rem 0.8rem;
+                padding: 1.8rem 1rem;
             }
             .ip-highlight {
-                font-size: 1.3rem;
-                padding: 0.6rem 1rem;
+                font-size: 1.5rem;
+                padding: 0.9rem 1.2rem;
             }
             .info-value-lg {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.7rem;
+                font-size: 1rem;
+                padding: 0.5rem 0.8rem;
             }
             .copy-ip-button {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.8rem;
+                padding: 0.7rem 1.6rem;
+                font-size: 0.85rem;
             }
             .main-content {
                 padding: 0.6rem 0.6rem 1.5rem 0.6rem;
@@ -796,12 +792,10 @@
     </style>
 </head>
 <body>
-    <!-- Install Banner -->
     <div id="installBanner" class="install-banner">
         <i class="fas fa-download"></i> Install D2IP App
     </div>
 
-    <!-- Background Video -->
     <video autoplay loop muted playsinline class="bg-video">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-grid-with-fast-moving-lines-1250-large.mp4" type="video/mp4">
     </video>
@@ -831,7 +825,7 @@
             <div class="sidebar-footer">
                 <div class="developer-credit">
                     <span class="credit-text">Developed by - OBAIDULLAH SHAIKH</span>
-                    <a href="https://obaidshaikh.vercel.app/" target="_blank" class="developer-link">
+                    <a href="https://obaidshaikh.vercel.app/" target="_blank" class="developer-link" rel="noopener noreferrer">
                         <span>Visit Portfolio</span><i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -853,7 +847,7 @@
                 </div>
                 <div class="mobile-dev-credit">
                     <span class="credit-text" style="display:block; margin-bottom:8px;">Developed by - OBAIDULLAH SHAIKH</span>
-                    <a href="https://obaidshaikh.vercel.app/" target="_blank" class="developer-link" style="margin:0 auto;">
+                    <a href="https://obaidshaikh.vercel.app/" target="_blank" class="developer-link" style="margin:0 auto;" rel="noopener noreferrer">
                         <span>Visit Portfolio</span><i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -872,7 +866,6 @@
                 </div>
             </div>
 
-            <!-- HOME PANEL -->
             <div id="homePanel">
                 <div class="hero-section">
                     <h1>Domain To IP Converter</h1>
@@ -880,7 +873,7 @@
                 </div>
                 <div class="search-wrapper">
                     <div class="input-container">
-                        <div class="input-glass" id="inputGlassWrapper">
+                        <div class="input-glass">
                             <input type="text" id="domainInput" class="domain-input" placeholder="Enter domain: google.com" autocomplete="off">
                         </div>
                         <button class="clear-input-btn" id="clearInputBtn" aria-label="Clear input">
@@ -901,7 +894,6 @@
                 </div>
             </div>
 
-            <!-- HISTORY PANEL -->
             <div id="historyPanel" class="hidden">
                 <div class="history-panel">
                     <div class="history-title"><i class="fas fa-clock"></i> Recent Resolutions</div>
@@ -914,202 +906,206 @@
     </div>
 
     <script>
-        let deferredPrompt;
-        const installBanner = document.getElementById('installBanner');
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBanner.style.display = 'flex';
-        });
-        installBanner.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') installBanner.style.display = 'none';
-                deferredPrompt = null;
-            }
-        });
-        
-        let historyData = [];
-        const homePanel = document.getElementById('homePanel');
-        const historyPanelElem = document.getElementById('historyPanel');
-        const homeTabDesktop = document.querySelector('.sidebar .nav-item[data-tab="home"]');
-        const historyTabDesktop = document.querySelector('.sidebar .nav-item[data-tab="history"]');
-        const mobileHome = document.querySelectorAll('[data-mobile-tab="home"]');
-        const mobileHistory = document.querySelectorAll('[data-mobile-tab="history"]');
-        const convertBtn = document.getElementById('convertBtn');
-        const domainInput = document.getElementById('domainInput');
-        const clearBtn = document.getElementById('clearInputBtn');
-        const resultPanel = document.getElementById('resultPanel');
-        const historyListContainer = document.getElementById('historyListContainer');
-        const sidebarThemeToggle = document.getElementById('sidebarThemeToggle');
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-        const hamburger = document.getElementById('hamburgerIcon');
-        const mobileSidebar = document.getElementById('mobileSidebar');
-        const closeSidebarBtn = document.getElementById('closeMobileSidebar');
-
-        // Clear input field
-        clearBtn?.addEventListener('click', () => {
-            domainInput.value = '';
-            domainInput.focus();
-        });
-
-        function toggleMobileSidebar(open) {
-            if(open) mobileSidebar.classList.add('open');
-            else mobileSidebar.classList.remove('open');
-        }
-        hamburger?.addEventListener('click', () => toggleMobileSidebar(true));
-        closeSidebarBtn?.addEventListener('click', () => toggleMobileSidebar(false));
-        document.addEventListener('click', (e) => {
-            if(mobileSidebar?.classList.contains('open') && !mobileSidebar.contains(e.target) && e.target !== hamburger && !hamburger?.contains(e.target)) {
-                toggleMobileSidebar(false);
-            }
-        });
-
-        function loadHistory() {
-            const stored = localStorage.getItem('d2ip_history');
-            if (stored) { try { historyData = JSON.parse(stored); } catch(e) { historyData = []; } }
-            else historyData = [];
-            renderHistoryList();
-        }
-        function saveHistory() { localStorage.setItem('d2ip_history', JSON.stringify(historyData.slice(0, 10))); }
-        function addToHistory(domain, ip) {
-            const existsIndex = historyData.findIndex(h => h.domain === domain);
-            if (existsIndex !== -1) { 
-                historyData[existsIndex].ip = ip; 
-                historyData[existsIndex].timestamp = Date.now();
-                const item = historyData.splice(existsIndex, 1)[0];
-                historyData.unshift(item);
-            } else { historyData.unshift({ domain, ip, timestamp: Date.now() }); }
-            historyData = historyData.slice(0, 12);
-            saveHistory();
-            renderHistoryList();
-        }
-        function renderHistoryList() {
-            if (!historyListContainer) return;
-            if (historyData.length === 0) {
-                historyListContainer.innerHTML = '<div class="empty-history">No history yet. Convert some domains!</div>';
-                return;
-            }
-            historyListContainer.innerHTML = historyData.map(item => `
-                <div class="history-item" data-domain="${escapeHtml(item.domain)}">
-                    <div><div class="history-domain">🌐 ${escapeHtml(item.domain)}</div><div class="history-ip">${escapeHtml(item.ip)}</div></div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            `).join('');
-            document.querySelectorAll('.history-item').forEach(el => {
-                el.addEventListener('click', () => {
-                    const domain = el.getAttribute('data-domain');
-                    if (domain) { domainInput.value = domain; setActiveTab('home'); performConversion(); toggleMobileSidebar(false); }
-                });
+        (function(){
+            let deferredPrompt;
+            const installBanner = document.getElementById('installBanner');
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBanner.style.display = 'flex';
             });
-        }
+            installBanner.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') installBanner.style.display = 'none';
+                    deferredPrompt = null;
+                }
+            });
 
-        function extractDomain(raw) {
-            let trimmed = raw.trim();
-            if (!trimmed) return null;
-            let withProtocol = trimmed;
-            if (!/^https?:\/\//i.test(withProtocol)) withProtocol = 'https://' + withProtocol;
-            try {
-                const url = new URL(withProtocol);
-                let host = url.hostname;
-                if (host.endsWith('.')) host = host.slice(0, -1);
-                const domainPattern = /^([a-z0-9-]+\.)+[a-z0-9]{2,}$/i;
-                if (host && domainPattern.test(host)) return host.toLowerCase();
-                return null;
-            } catch (e) {
-                const direct = /^([a-z0-9-]+\.)+[a-z0-9]{2,}$/i;
-                return direct.test(trimmed) ? trimmed.toLowerCase() : null;
+            let historyData = [];
+            const homePanel = document.getElementById('homePanel');
+            const historyPanelElem = document.getElementById('historyPanel');
+            const homeTabDesktop = document.querySelector('.sidebar .nav-item[data-tab="home"]');
+            const historyTabDesktop = document.querySelector('.sidebar .nav-item[data-tab="history"]');
+            const mobileHome = document.querySelectorAll('[data-mobile-tab="home"]');
+            const mobileHistory = document.querySelectorAll('[data-mobile-tab="history"]');
+            const convertBtn = document.getElementById('convertBtn');
+            const domainInput = document.getElementById('domainInput');
+            const clearBtn = document.getElementById('clearInputBtn');
+            const resultPanel = document.getElementById('resultPanel');
+            const historyListContainer = document.getElementById('historyListContainer');
+            const sidebarThemeToggle = document.getElementById('sidebarThemeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const hamburger = document.getElementById('hamburgerIcon');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const closeSidebarBtn = document.getElementById('closeMobileSidebar');
+
+            clearBtn?.addEventListener('click', () => {
+                domainInput.value = '';
+                domainInput.focus();
+            });
+
+            function toggleMobileSidebar(open) {
+                if(open) mobileSidebar.classList.add('open');
+                else mobileSidebar.classList.remove('open');
             }
-        }
+            hamburger?.addEventListener('click', () => toggleMobileSidebar(true));
+            closeSidebarBtn?.addEventListener('click', () => toggleMobileSidebar(false));
+            document.addEventListener('click', (e) => {
+                if(mobileSidebar?.classList.contains('open') && !mobileSidebar.contains(e.target) && e.target !== hamburger && !hamburger?.contains(e.target)) {
+                    toggleMobileSidebar(false);
+                }
+            });
 
-        function showToast(msg, isErr = false) {
-            let toast = document.getElementById('dynamicToast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'dynamicToast';
-                toast.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%); background:var(--card-bg); border:1px solid var(--border-color); color:var(--text-primary); padding:10px 24px; border-radius:40px; font-size:0.85rem; z-index:9999; backdrop-filter:blur(12px);';
-                document.body.appendChild(toast);
+            function loadHistory() {
+                const stored = localStorage.getItem('d2ip_history');
+                if (stored) { try { historyData = JSON.parse(stored); } catch(e) { historyData = []; } }
+                else historyData = [];
+                renderHistoryList();
             }
-            toast.textContent = msg;
-            toast.style.borderColor = isErr ? '#EF4444' : 'var(--accent)';
-            toast.style.opacity = '1';
-            setTimeout(() => toast.style.opacity = '0', 2200);
-        }
-        window.copyIpGlobal = async function(ip) {
-            try { await navigator.clipboard.writeText(ip); showToast(`✅ Copied ${ip}`); } catch(e) { showToast("Failed", true); }
-        }
-
-        async function performConversion() {
-            const rawValue = domainInput.value.trim();
-            if (!rawValue) { showToast("Please enter a domain", true); return; }
-            const domain = extractDomain(rawValue);
-            if (!domain) { resultPanel.innerHTML = `<div class="result-card"><div style="color:#F87171;">Invalid domain format.</div></div>`; return; }
-            resultPanel.innerHTML = `<div class="result-card"><div style="text-align:center;"><div class="loading-spinner"></div><div>Resolving ${escapeHtml(domain)}...</div></div></div>`;
-            try {
-                const dnsRes = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`);
-                if (!dnsRes.ok) throw new Error();
-                const data = await dnsRes.json();
-                let ips = data.Answer ? data.Answer.filter(r => r.type === 1).map(r => r.data) : [];
-                ips = [...new Set(ips)];
-                const ipDisplay = ips.length ? ips.join(', ') : 'No A Records';
-                const primaryIp = ips.length ? ips[0] : 'N/A';
-                addToHistory(domain, ipDisplay);
-                resultPanel.innerHTML = `
-                    <div class="result-card">
-                        <div class="info-row-center">
-                            <div class="info-block-center"><div class="info-label-sm">TARGET DOMAIN</div><div class="info-value-lg">${escapeHtml(domain)}</div></div>
-                            <div class="info-block-center"><div class="info-label-sm">IP ADDRESS</div><div class="ip-chip-center"><span class="green-dot"></span><span class="ip-highlight">${escapeHtml(ipDisplay)}</span></div></div>
-                            ${ips.length ? `<button class="copy-ip-button" id="copyResultIpBtn"><i class="fas fa-copy"></i> Copy IP</button>` : ''}
-                        </div>
+            function saveHistory() { localStorage.setItem('d2ip_history', JSON.stringify(historyData.slice(0, 12))); }
+            function addToHistory(domain, ip) {
+                const existsIndex = historyData.findIndex(h => h.domain === domain);
+                if (existsIndex !== -1) { 
+                    historyData[existsIndex].ip = ip; 
+                    historyData[existsIndex].timestamp = Date.now();
+                    const item = historyData.splice(existsIndex, 1)[0];
+                    historyData.unshift(item);
+                } else { historyData.unshift({ domain, ip, timestamp: Date.now() }); }
+                historyData = historyData.slice(0, 12);
+                saveHistory();
+                renderHistoryList();
+            }
+            function renderHistoryList() {
+                if (!historyListContainer) return;
+                if (historyData.length === 0) {
+                    historyListContainer.innerHTML = '<div class="empty-history">No history yet. Convert some domains!</div>';
+                    return;
+                }
+                historyListContainer.innerHTML = historyData.map(item => `
+                    <div class="history-item" data-domain="${escapeHtml(item.domain)}">
+                        <div><div class="history-domain">🌐 ${escapeHtml(item.domain)}</div><div class="history-ip">${escapeHtml(item.ip)}</div></div>
+                        <i class="fas fa-chevron-right"></i>
                     </div>
-                `;
-                if (ips.length) document.getElementById('copyResultIpBtn')?.addEventListener('click', () => window.copyIpGlobal(primaryIp));
-            } catch(err) { resultPanel.innerHTML = `<div class="result-card"><div style="color:#F87171;">DNS resolution failed</div></div>`; }
-        }
-
-        function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
-        
-        function setActiveTab(tab) {
-            const isHome = (tab === 'home');
-            homePanel.classList.toggle('hidden', !isHome);
-            historyPanelElem.classList.toggle('hidden', isHome);
-            if (homeTabDesktop) homeTabDesktop.classList.toggle('active', isHome);
-            if (historyTabDesktop) historyTabDesktop.classList.toggle('active', !isHome);
-            mobileHome.forEach(m => m.classList.toggle('active', isHome));
-            mobileHistory.forEach(m => m.classList.toggle('active', !isHome));
-            if (!isHome) renderHistoryList();
-        }
-
-        homeTabDesktop?.addEventListener('click', () => setActiveTab('home'));
-        historyTabDesktop?.addEventListener('click', () => setActiveTab('history'));
-        mobileHome.forEach(m => m.addEventListener('click', () => { setActiveTab('home'); toggleMobileSidebar(false); }));
-        mobileHistory.forEach(m => m.addEventListener('click', () => { setActiveTab('history'); toggleMobileSidebar(false); renderHistoryList(); }));
-        convertBtn.addEventListener('click', performConversion);
-        domainInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performConversion(); });
-
-        function applyTheme(theme) {
-            if(theme === 'light') { document.body.classList.add('light-mode'); }
-            else { document.body.classList.remove('light-mode'); }
-            localStorage.setItem('d2ip_theme', theme);
-            const sidebarIcon = document.querySelector('#sidebarThemeToggle i');
-            if(sidebarIcon) {
-                if(theme === 'light') sidebarIcon.classList.remove('fa-moon'), sidebarIcon.classList.add('fa-sun');
-                else sidebarIcon.classList.remove('fa-sun'), sidebarIcon.classList.add('fa-moon');
+                `).join('');
+                document.querySelectorAll('.history-item').forEach(el => {
+                    el.addEventListener('click', () => {
+                        const domain = el.getAttribute('data-domain');
+                        if (domain) { domainInput.value = domain; setActiveTab('home'); performConversion(); toggleMobileSidebar(false); }
+                    });
+                });
             }
-            const mobileToggleIcon = document.querySelector('#mobileThemeToggle i');
-            if(mobileToggleIcon) {
-                if(theme === 'light') mobileToggleIcon.classList.remove('fa-moon'), mobileToggleIcon.classList.add('fa-sun');
-                else mobileToggleIcon.classList.remove('fa-sun'), mobileToggleIcon.classList.add('fa-moon');
+
+            function extractDomain(raw) {
+                let trimmed = raw.trim();
+                if (!trimmed) return null;
+                let withProtocol = trimmed;
+                if (!/^https?:\/\//i.test(withProtocol)) withProtocol = 'https://' + withProtocol;
+                try {
+                    const url = new URL(withProtocol);
+                    let host = url.hostname;
+                    if (host.endsWith('.')) host = host.slice(0, -1);
+                    const domainPattern = /^([a-z0-9-]+\.)+[a-z0-9]{2,}$/i;
+                    if (host && domainPattern.test(host)) return host.toLowerCase();
+                    return null;
+                } catch (e) {
+                    const direct = /^([a-z0-9-]+\.)+[a-z0-9]{2,}$/i;
+                    return direct.test(trimmed) ? trimmed.toLowerCase() : null;
+                }
             }
-        }
-        sidebarThemeToggle?.addEventListener('click', () => { const newMode = document.body.classList.contains('light-mode') ? 'dark' : 'light'; applyTheme(newMode); });
-        mobileThemeToggle?.addEventListener('click', () => { const newMode = document.body.classList.contains('light-mode') ? 'dark' : 'light'; applyTheme(newMode); toggleMobileSidebar(false); });
-        const savedTheme = localStorage.getItem('d2ip_theme');
-        if(savedTheme === 'light') applyTheme('light');
-        else applyTheme('dark');
-        loadHistory();
-        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed', err)); }
+
+            function showToast(msg, isErr = false) {
+                let toast = document.getElementById('dynamicToast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'dynamicToast';
+                    toast.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%); background:var(--card-bg); border:1px solid var(--border-color); color:var(--text-primary); padding:10px 24px; border-radius:40px; font-size:0.85rem; z-index:9999; backdrop-filter:blur(12px);';
+                    document.body.appendChild(toast);
+                }
+                toast.textContent = msg;
+                toast.style.borderColor = isErr ? '#EF4444' : 'var(--accent)';
+                toast.style.opacity = '1';
+                setTimeout(() => toast.style.opacity = '0', 2200);
+            }
+            window.copyIpGlobal = async function(ip) {
+                try { await navigator.clipboard.writeText(ip); showToast(`✅ Copied ${ip}`); } catch(e) { showToast("Failed to copy", true); }
+            }
+
+            async function performConversion() {
+                const rawValue = domainInput.value.trim();
+                if (!rawValue) { showToast("Please enter a domain", true); return; }
+                const domain = extractDomain(rawValue);
+                if (!domain) { resultPanel.innerHTML = `<div class="result-card"><div style="color:#F87171;">❌ Invalid domain format.</div></div>`; return; }
+                resultPanel.innerHTML = `<div class="result-card"><div style="text-align:center;"><div class="loading-spinner"></div><div>Resolving ${escapeHtml(domain)}...</div></div></div>`;
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 8000);
+                    const dnsRes = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`, { signal: controller.signal });
+                    clearTimeout(timeoutId);
+                    if (!dnsRes.ok) throw new Error();
+                    const data = await dnsRes.json();
+                    let ips = data.Answer ? data.Answer.filter(r => r.type === 1).map(r => r.data) : [];
+                    ips = [...new Set(ips)];
+                    const ipDisplay = ips.length ? ips.join(', ') : 'No A Records';
+                    const primaryIp = ips.length ? ips[0] : 'N/A';
+                    addToHistory(domain, ipDisplay);
+                    resultPanel.innerHTML = `
+                        <div class="result-card">
+                            <div class="info-row-center">
+                                <div class="info-block-center"><div class="info-label-sm">TARGET DOMAIN</div><div class="info-value-lg">${escapeHtml(domain)}</div></div>
+                                <div class="info-block-center"><div class="info-label-sm">IP ADDRESS</div><div class="ip-chip-center"><span class="green-dot"></span><span class="ip-highlight">${escapeHtml(ipDisplay)}</span></div></div>
+                                ${ips.length ? `<button class="copy-ip-button" id="copyResultIpBtn"><i class="fas fa-copy"></i> Copy IP</button>` : ''}
+                            </div>
+                        </div>
+                    `;
+                    if (ips.length && document.getElementById('copyResultIpBtn')) document.getElementById('copyResultIpBtn').addEventListener('click', () => window.copyIpGlobal(primaryIp));
+                } catch(err) { resultPanel.innerHTML = `<div class="result-card"><div style="color:#F87171;">⚠️ DNS resolution failed. Check domain or network.</div></div>`; }
+            }
+
+            function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
+            
+            function setActiveTab(tab) {
+                const isHome = (tab === 'home');
+                homePanel.classList.toggle('hidden', !isHome);
+                historyPanelElem.classList.toggle('hidden', isHome);
+                if (homeTabDesktop) homeTabDesktop.classList.toggle('active', isHome);
+                if (historyTabDesktop) historyTabDesktop.classList.toggle('active', !isHome);
+                mobileHome.forEach(m => m.classList.toggle('active', isHome));
+                mobileHistory.forEach(m => m.classList.toggle('active', !isHome));
+                if (!isHome) renderHistoryList();
+            }
+
+            homeTabDesktop?.addEventListener('click', () => setActiveTab('home'));
+            historyTabDesktop?.addEventListener('click', () => setActiveTab('history'));
+            mobileHome.forEach(m => m.addEventListener('click', () => { setActiveTab('home'); toggleMobileSidebar(false); }));
+            mobileHistory.forEach(m => m.addEventListener('click', () => { setActiveTab('history'); toggleMobileSidebar(false); renderHistoryList(); }));
+            convertBtn.addEventListener('click', performConversion);
+            domainInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performConversion(); });
+
+            function applyTheme(theme) {
+                if(theme === 'light') { document.body.classList.add('light-mode'); }
+                else { document.body.classList.remove('light-mode'); }
+                localStorage.setItem('d2ip_theme', theme);
+                const sidebarIcon = document.querySelector('#sidebarThemeToggle i');
+                if(sidebarIcon) {
+                    if(theme === 'light') sidebarIcon.classList.remove('fa-moon'), sidebarIcon.classList.add('fa-sun');
+                    else sidebarIcon.classList.remove('fa-sun'), sidebarIcon.classList.add('fa-moon');
+                }
+                const mobileToggleIcon = document.querySelector('#mobileThemeToggle i');
+                if(mobileToggleIcon) {
+                    if(theme === 'light') mobileToggleIcon.classList.remove('fa-moon'), mobileToggleIcon.classList.add('fa-sun');
+                    else mobileToggleIcon.classList.remove('fa-sun'), mobileToggleIcon.classList.add('fa-moon');
+                }
+            }
+            sidebarThemeToggle?.addEventListener('click', () => { const newMode = document.body.classList.contains('light-mode') ? 'dark' : 'light'; applyTheme(newMode); });
+            mobileThemeToggle?.addEventListener('click', () => { const newMode = document.body.classList.contains('light-mode') ? 'dark' : 'light'; applyTheme(newMode); toggleMobileSidebar(false); });
+            const savedTheme = localStorage.getItem('d2ip_theme');
+            if(savedTheme === 'light') applyTheme('light');
+            else applyTheme('dark');
+            loadHistory();
+            if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration optional', err)); }
+        })();
     </script>
 </body>
 </html>
