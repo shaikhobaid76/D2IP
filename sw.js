@@ -1,4 +1,4 @@
-const CACHE_NAME = 'd2ip-cache-v2';
+const CACHE_NAME = 'd2ip-cache-v3';
 
 const urlsToCache = [
   '/',
